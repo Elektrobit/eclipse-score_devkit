@@ -1,0 +1,6 @@
+{
+    "name": "s-core-local",
+    "id": "s-core-local",
+    "description": "Tools which are not available as already existing devcontainer feature",
+    "options": {}
+}

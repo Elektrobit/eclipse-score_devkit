@@ -1,5 +1,22 @@
 {
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "ghcr.io/devcontainers-community/features/bazel:1": {
+            "bazelisk_version": "v1.26.0",
+            "buildifier_version": "v8.2.1"
+        },
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers-community/features/llvm": {
+            "version": "20"
+        },
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.12"
+        },
+        "./local": { }
+    },
+    "containerEnv": {
+        "USE_BAZEL_VERSION": "8.3.0"
+    },
     "customizations": {
         "vscode": {
             "extensions": [
