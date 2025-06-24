@@ -1,0 +1,5 @@
+{
+  "version": "0.1.0",
+  "image_name": "s-core-devcontainer",
+  "description": "Develop the Eclipse S-Core project"
+}
