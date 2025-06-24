@@ -1,5 +1,5 @@
 name: 'build' 
-on: # rebuild any PRs and main branch changes
+on:
   pull_request:
   push:
     branches:
@@ -16,5 +16,4 @@ jobs:
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.3
         with:
-          runCmd: |
-            devcontainer build --workspace-folder src/s-core-devcontainer
+          runCmd: ./scripts/build.sh
