@@ -19,9 +19,25 @@
         "vscode": {
             "extensions": [
                 "mads-hartmann.bash-ide-vscode",
+                "bazelbuild.vscode-bazel",
                 "dbaeumer.vscode-eslint",
-                "EditorConfig.EditorConfig"
-            ]
+                "EditorConfig.EditorConfig",
+                "llvm-vs-code-extensions.vscode-clangd",
+                "jebbs.plantuml" //to preview PlantUML diagrams
+            ],
+            "settings": {
+				"files.insertFinalNewline": true,
+                "editor.formatOnSave": false,
+				"[cpp]": {
+					"editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+				},
+                "clangd.arguments": [
+					"--compile-commands-dir=${workspaceFolder}/",
+					"--pretty",
+					"--background-index"
+				],
+				"C_Cpp.intelliSenseEngine": "disabled"
+            }
         }
     }
 }
