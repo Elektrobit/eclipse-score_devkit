@@ -1,4 +1,4 @@
-name: 'build' 
+name: 'build'
 on:
   pull_request:
   push:
@@ -16,7 +16,7 @@ jobs:
       contents: read
       packages: write
       id-token: write
-    
+
     steps:
       - name: Checkout (GitHub)
         uses: actions/checkout@v3
