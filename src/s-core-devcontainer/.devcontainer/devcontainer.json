@@ -16,9 +16,9 @@
             "BAZEL_COMPILE_COMMANDS_VERSION": "0.17.2"
         }
     },
-    "initializeCommand": "mkdir -p ${localEnv:HOME}/./cache/bazel",
+    "initializeCommand": "mkdir -p ${localEnv:HOME}/.cache/bazel",
 	"mounts": [
-		"source=${localEnv:HOME}/./cache/bazel,target=/home/developer/./cache/bazel,type=bind,consistency=cached"
+		"source=${localEnv:HOME}/.cache/bazel,target=/home/developer/.cache/bazel,type=bind"
 	],
     "containerEnv": {
 		"USER": "developer"
