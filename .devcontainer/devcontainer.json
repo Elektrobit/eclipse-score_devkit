@@ -3,7 +3,6 @@
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
-    "runArgs": ["--env-file",".devcontainer/devcontainer.env"],
     "postCreateCommand": "npm install -g @devcontainers/cli",
     "customizations": {
         "vscode": {
