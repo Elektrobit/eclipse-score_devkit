@@ -1,5 +1,5 @@
 {
-    "name": "s-core-local",
+    "name": "SCORE-specific Local Tools",
     "id": "s-core-local",
     "description": "Tools which are not available as already existing devcontainer feature",
     "options": {
@@ -17,6 +17,39 @@
             "type": "string",
             "default": "0.17.2",
             "description": "Version of Bazel Compile Commands to install"
+        }
+    },
+    "postCreateCommand": "echo \"startup --output_user_root=/var/cache/bazel\" >> ~/.bazelrc",
+	"mounts": [ {
+            "source": "${localEnv:HOME}/.cache/bazel",
+            "target": "/var/cache/bazel",
+            "type": "bind"
+        }
+	],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "mads-hartmann.bash-ide-vscode",
+                "bazelbuild.vscode-bazel",
+                "dbaeumer.vscode-eslint",
+                "EditorConfig.EditorConfig",
+                "llvm-vs-code-extensions.vscode-clangd",
+                "jebbs.plantuml", //to preview PlantUML diagrams
+                "hediet.vscode-drawio" //for drawio integration
+            ],
+            "settings": {
+				"files.insertFinalNewline": true,
+                "editor.formatOnSave": false,
+				"[cpp]": {
+					"editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+				},
+                "clangd.arguments": [
+					"--compile-commands-dir=${workspaceFolder}/",
+					"--pretty",
+					"--background-index"
+				],
+				"C_Cpp.intelliSenseEngine": "disabled"
+            }
         }
     }
 }
