@@ -21,7 +21,11 @@ curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel-arc
 mv bazel-archive-keyring.gpg /usr/share/keyrings
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
 apt-get update
+
+# Buildifier, directly from GitHub (apparently no APT package available)
 apt-get install -y bazel=${BAZEL_VERSION}
+curl -L "https://github.com/bazelbuild/buildtools/releases/download/v${BUILDIFIER_VERSION}/buildifier-linux-amd64" -o /usr/local/bin/buildifier
+chmod +x /usr/local/bin/buildifier
 
 # Code completion for C++ code of bazel projects
 # see https://github.com/kiron1/bazel-compile-commands

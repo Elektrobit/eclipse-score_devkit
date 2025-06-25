@@ -12,6 +12,7 @@
         },
         "./local": {
             "BAZEL_VERSION": "7.5.0",
+            "BUILDIFIER_VERSION": "8.2.1",
             "BAZEL_COMPILE_COMMANDS_VERSION": "0.17.2"
         }
     },
@@ -23,7 +24,8 @@
                 "dbaeumer.vscode-eslint",
                 "EditorConfig.EditorConfig",
                 "llvm-vs-code-extensions.vscode-clangd",
-                "jebbs.plantuml" //to preview PlantUML diagrams
+                "jebbs.plantuml", //to preview PlantUML diagrams
+                "hediet.vscode-drawio" //for drawio integration
             ],
             "settings": {
 				"files.insertFinalNewline": true,
