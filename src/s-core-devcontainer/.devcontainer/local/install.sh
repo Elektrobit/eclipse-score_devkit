@@ -27,7 +27,7 @@ apt-get install -y bazel=${BAZEL_VERSION}
 curl -L "https://github.com/bazelbuild/buildtools/releases/download/v${BUILDIFIER_VERSION}/buildifier-linux-amd64" -o /usr/local/bin/buildifier
 chmod +x /usr/local/bin/buildifier
 
-# Code completion for C++ code of bazel projects
+# Code completion for C++ code of Bazel projects
 # see https://github.com/kiron1/bazel-compile-commands
 source /etc/lsb-release
 curl -L "https://github.com/kiron1/bazel-compile-commands/releases/download/v${BAZEL_COMPILE_COMMANDS_VERSION}/bazel-compile-commands_${BAZEL_COMPILE_COMMANDS_VERSION}-${DISTRIB_CODENAME}_amd64.deb" -o bazel-compile-commands.deb

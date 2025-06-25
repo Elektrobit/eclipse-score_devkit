@@ -1,5 +1,5 @@
 {
   "version": "0.1.0",
   "image_name": "ghcr.io/elektrobit/eclipse-score_devkit",
-  "description": "Develop the Eclipse S-Core project"
+  "description": "Develop the Eclipse S-CORE project"
 }
