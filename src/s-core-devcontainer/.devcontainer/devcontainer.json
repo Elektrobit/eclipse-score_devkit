@@ -10,7 +10,8 @@
             "version": "3"
         },
         "./local": {
-            "BAZEL_VERSION": "7.5.0"
+            "BAZEL_VERSION": "7.5.0",
+            "BAZEL_COMPILE_COMMANDS_VERSION": "0.17.2"
         }
     },
     "customizations": {
