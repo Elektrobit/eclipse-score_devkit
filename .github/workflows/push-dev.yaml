@@ -26,6 +26,6 @@ jobs:
         with:
           runCmd: |
             echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            ./scripts/test.sh
-            ./scripts/build.sh
+            ./scripts/test.sh s-core-devcontainer
+            ./scripts/build.sh s-core-devcontainer
         
