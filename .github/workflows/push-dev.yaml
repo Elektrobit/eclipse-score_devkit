@@ -21,9 +21,11 @@ jobs:
       - name: Checkout (GitHub)
         uses: actions/checkout@v3
 
-      - name: Build and run dev container task
+      - name: Build DevContainer
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
             echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            ./scripts/test.sh
             ./scripts/build.sh
+        

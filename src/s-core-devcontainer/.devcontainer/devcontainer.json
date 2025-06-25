@@ -10,7 +10,7 @@
         "ghcr.io/devcontainers/features/python:1": {
             "version": "3"
         },
-        "./local": {
+        "./s-core-local": {
             "BAZEL_VERSION": "7.5.0",
             "BUILDIFIER_VERSION": "8.2.1",
             "BAZEL_COMPILE_COMMANDS_VERSION": "0.17.2"

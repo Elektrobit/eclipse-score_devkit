@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Copy feature sources and tests to expected location
+FEATURES_DIR="/devcontainer/features"
+SCRIPT_PATH=$(readlink -f "$0")
+SCRIPT_DIR=$(dirname -- "${SCRIPT_PATH}")
+mkdir -p "${FEATURES_DIR}"
+COPY_TARGET="${FEATURES_DIR}/$(basename "${SCRIPT_DIR%%_*}")"
+cp -R "${SCRIPT_DIR}" "${COPY_TARGET}"
+rm -f "${COPY_TARGET}/devcontainer-features.env" "${COPY_TARGET}/devcontainer-features-install.sh"
+
 # "Common" tools
 apt-get update
 apt-get install -y \
