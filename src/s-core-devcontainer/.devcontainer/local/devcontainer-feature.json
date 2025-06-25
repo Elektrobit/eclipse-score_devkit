@@ -7,6 +7,11 @@
             "type": "string",
             "default": "7.5.0",
             "description": "Version of Bazel to install"
+        },
+        "BAZEL_COMPILE_COMMANDS_VERSION": {
+            "type": "string",
+            "default": "0.17.2",
+            "description": "Version of Bazel Compile Commands to install"
         }
     }
 }

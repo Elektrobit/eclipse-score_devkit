@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# GraphViz
+# "Common" tools
 apt-get update
+apt-get install -y \
+    curl
+
+# GraphViz
 apt-get install -y graphviz
 
 # Bazel, via APT
@@ -18,6 +22,12 @@ mv bazel-archive-keyring.gpg /usr/share/keyrings
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
 apt-get update
 apt-get install -y bazel=${BAZEL_VERSION}
+
+# Code completion for C++ code of bazel projects
+source /etc/lsb-release
+curl https://github.com/kiron1/bazel-compile-commands/releases/download/v${BAZEL_COMPILE_COMMANDS_VERSION}/bazel-compile-commands_${BAZEL_COMPILE_COMMANDS_VERSION}-${DISTRIB_CODENAME}_amd64.deb -o bazel-compile-commands.deb
+dpkg -i  bazel-compile-commands.deb
+rm  bazel-compile-commands.deb
 
 # Cleanup
 apt-get autoremove -y
