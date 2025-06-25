@@ -10,7 +10,7 @@
             "version": "3"
         },
         "./local": {
-            "BAZEL_VERSION": "8.3.0"
+            "BAZEL_VERSION": "7.5.0"
         }
     },
     "customizations": {
