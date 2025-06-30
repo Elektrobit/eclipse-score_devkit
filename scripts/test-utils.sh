@@ -26,7 +26,7 @@ check() {
     fi
 }
 
-check-version-ge() {
+checkVersionGe() {
     LABEL=$1
     CURRENT_VERSION=$2
     REQUIRED_VERSION=$3
