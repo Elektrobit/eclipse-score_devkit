@@ -1,0 +1,14 @@
+{
+  "features": {
+    "ghcr.io/devcontainers-extra/features/pre-commit:2": {
+      "version": "2.0.18",
+      "resolved": "ghcr.io/devcontainers-extra/features/pre-commit@sha256:6e0bb2ce80caca1d94f44dab5d0653d88a1c00984e590adb7c6bce012d0ade6e",
+      "integrity": "sha256:6e0bb2ce80caca1d94f44dab5d0653d88a1c00984e590adb7c6bce012d0ade6e"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "2.12.2",
+      "resolved": "ghcr.io/devcontainers/features/docker-in-docker@sha256:842d2ed40827dc91b95ef727771e170b0e52272404f00dba063cee94eafac4bb",
+      "integrity": "sha256:842d2ed40827dc91b95ef727771e170b0e52272404f00dba063cee94eafac4bb"
+    }
+  }
+}
