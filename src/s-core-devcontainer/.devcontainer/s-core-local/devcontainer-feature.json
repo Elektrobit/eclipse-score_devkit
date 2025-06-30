@@ -28,6 +28,16 @@
             "type": "string",
             "default": "",
             "description": "sha256sums of Bazel Compile Commands to verify the download; format: <codename>:<sha256sum>;<codename>:<sha256sum>;..."
+        },
+        "DRAWIO_VERSION": {
+            "type": "string",
+            "default": "27.0.9",
+            "description": "Version of Draw.IO desktop application to install"
+        },
+        "DRAWIO_SHA256": {
+            "type": "string",
+            "default": "",
+            "description": "sha256sum of the Draw.IO desktop application to verify the download"
         }
     },
     "postCreateCommand": "/devcontainer/features/s-core-local/post_create_command.sh",

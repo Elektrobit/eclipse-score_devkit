@@ -10,7 +10,7 @@ COPY_TARGET="${FEATURES_DIR}/$(basename "${SCRIPT_DIR%%_*}")"
 cp -R "${SCRIPT_DIR}" "${COPY_TARGET}"
 rm -f "${COPY_TARGET}/devcontainer-features.env" "${COPY_TARGET}/devcontainer-features-install.sh"
 
-# Check variables
+# Check if required variables are set
 if [ -z "${BAZEL_VERSION:-}" ]; then
     echo "Error: BAZEL_VERSION is not set."
     exit 1
@@ -32,7 +32,9 @@ if [ -z "${BAZEL_COMPILE_COMMANDS_SHA256:-}" ]; then
     exit 1
 fi
 
-# "Common" tools
+DEBIAN_FRONTEND=noninteractive
+
+# Install "common" tools
 apt-get update
 apt-get install -y \
     curl
@@ -40,10 +42,17 @@ apt-get install -y \
 # GraphViz
 apt-get install -y graphviz
 
+# Draw.IO, directly from GitHub (apparently no APT repository available)
+# The version is pinned to a specific release, and the SHA256 checksum is provided by the devcontainer-features.json file.
+curl -L https://github.com/jgraph/drawio-desktop/releases/download/v${DRAWIO_VERSION}/drawio-amd64-${DRAWIO_VERSION}.deb -o /tmp/drawio.deb
+echo "${DRAWIO_SHA256} /tmp/drawio.deb" | sha256sum -c - || exit -1
+apt-get install -y --no-install-recommends --fix-broken /tmp/drawio.deb
+rm /tmp/drawio.deb
+
 # Bazel, via APT
 # - ghcr.io/devcontainers-community/features/bazel uses bazelisk, which has a few problems:
-#   - It does not install bash autocompletion
-#   - The bazel version is not pinned (which is required to be reproducible and to have coordinated, tested tool updates).
+#   - It does not install bash autocompletion.
+#   - The bazel version is not pinned, which is required to be reproducible and to have coordinated, tested tool updates.
 #   - In general, pre-built containers *shall not* download "more tools" from the internet.
 #     This is an operational risk (security, availability); it makes the build non-reproducible,
 #     and it prevents the container from working in air-gapped environments.
@@ -54,22 +63,22 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] h
 apt-get update
 apt-get install -y bazel=${BAZEL_VERSION}
 
-# Buildifier, directly from GitHub (apparently no APT package available)
+# Buildifier, directly from GitHub (apparently no APT repository available)
+# The version is pinned to a specific release, and the SHA256 checksum is provided by the devcontainer-features.json file.
 curl -L "https://github.com/bazelbuild/buildtools/releases/download/v${BUILDIFIER_VERSION}/buildifier-linux-amd64" -o /usr/local/bin/buildifier
 echo "${BUILDIFIER_SHA256} /usr/local/bin/buildifier" | sha256sum -c - || exit -1
 chmod +x /usr/local/bin/buildifier
 
 # Code completion for C++ code of Bazel projects
-# see https://github.com/kiron1/bazel-compile-commands
+# (see https://github.com/kiron1/bazel-compile-commands)
+# The version is pinned to a specific release, and the SHA256 checksum is provided by the devcontainer-features.json file.
 source /etc/lsb-release
-curl -L "https://github.com/kiron1/bazel-compile-commands/releases/download/v${BAZEL_COMPILE_COMMANDS_VERSION}/bazel-compile-commands_${BAZEL_COMPILE_COMMANDS_VERSION}-${DISTRIB_CODENAME}_amd64.deb" -o bazel-compile-commands.deb
+curl -L "https://github.com/kiron1/bazel-compile-commands/releases/download/v${BAZEL_COMPILE_COMMANDS_VERSION}/bazel-compile-commands_${BAZEL_COMPILE_COMMANDS_VERSION}-${DISTRIB_CODENAME}_amd64.deb" -o /tmp/bazel-compile-commands.deb
 # Extract correct sha256 for current DISTRIB_CODENAME and check
 BAZEL_COMPILE_COMMANDS_DEB_SHA256=$(echo "${BAZEL_COMPILE_COMMANDS_SHA256}" | tr ';' '\n' | grep "^${DISTRIB_CODENAME}:" | cut -d: -f2)
-echo "$BAZEL_COMPILE_COMMANDS_DEB_SHA256"
-echo "${BAZEL_COMPILE_COMMANDS_DEB_SHA256} bazel-compile-commands.deb" | sha256sum -c - || exit -1
-
-dpkg -i bazel-compile-commands.deb
-rm  bazel-compile-commands.deb
+echo "${BAZEL_COMPILE_COMMANDS_DEB_SHA256} /tmp/bazel-compile-commands.deb" | sha256sum -c - || exit -1
+apt-get install -y --no-install-recommends --fix-broken /tmp/bazel-compile-commands.deb
+rm /tmp/bazel-compile-commands.deb
 
 # Cleanup
 apt-get autoremove -y
