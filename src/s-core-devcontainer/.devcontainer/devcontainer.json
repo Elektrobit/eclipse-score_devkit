@@ -41,7 +41,8 @@
                 "EditorConfig.EditorConfig",
                 "llvm-vs-code-extensions.vscode-clangd",
                 "jebbs.plantuml", //to preview PlantUML diagrams
-                "hediet.vscode-drawio" //for drawio integration
+                "hediet.vscode-drawio", //for drawio integration
+                "swyddfa.esbonio" // for Sphinx documentation support
             ],
             "settings": {
 				"files.insertFinalNewline": true,
