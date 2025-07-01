@@ -1,5 +1,5 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "image": "mcr.microsoft.com/devcontainers/base:noble",
     "features": {
         "ghcr.io/devcontainers/features/git:1": {},
         "ghcr.io/devcontainers/features/git-lfs:1": {},
@@ -31,6 +31,7 @@
             "DRAWIO_SHA256": "3b941454f05f175ff21c983d589f7804229801bd82e1a0e8c1d97af302c2fae0"
         }
     },
+    "initializeCommand": "mkdir -p ${localEnv:HOME}/.cache/bazel",
     "customizations": {
         "vscode": {
             "extensions": [
