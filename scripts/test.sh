@@ -23,9 +23,4 @@ IMAGE_ID=$(docker image ls --filter "reference=${IMAGE_NAME}" --quiet)
 echo "(*) Running test..."
 devcontainer exec --workspace-folder "${PROJECT_DIR}/src/${IMAGE}" --id-label "${ID_LABEL}" \
   /bin/sh -c 'set -e && cd test-project && \
-  if [ "$(id -u)" = "0" ]; then \
-    chmod +x test.sh; \
-  else \
-    sudo chmod +x test.sh; \
-  fi && \
   ./test.sh'
