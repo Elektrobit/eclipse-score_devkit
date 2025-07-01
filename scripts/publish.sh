@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-IMAGE="$1"
-VERSION="${2:-latest}"
+VERSION="${1:-snapshot}"
 
-devcontainer build --workspace-folder src/${IMAGE} --push true --image-name ghcr.io/elektrobit/eclipse-score_devkit:${VERSION}
+devcontainer build --workspace-folder src/s-core-devcontainer --push true --image-name ghcr.io/elektrobit/eclipse-score_devkit:${VERSION}

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-IMAGE="$1"
+IMAGE="s-core-devcontainer"
 
 export DOCKER_BUILDKIT=1
 
