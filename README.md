@@ -27,7 +27,7 @@ It should contain the following:
 }
 ````
 
-The `<version>` must be a valid, published release.
+The `<version>` must be a [valid, published release](../../tags).
 
 To start using the container, click the **Reopen in Container** button when prompted by Visual Studio Code:
 
