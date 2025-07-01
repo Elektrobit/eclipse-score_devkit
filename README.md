@@ -70,15 +70,48 @@ Ordered by importance:
 It uses pre-existing [DevContainer features](https://containers.dev/implementors/features/) to provide some standard tools like Git, Rust, and LLVM.
 In addition, it uses a so-called "local" feature (cf. `src/s-core-devcontainer/.devcontainer/s-core-local`) for the remaining tools and configuration.
 * `scripts/` contains scripts to build, test and publish the container.
-They are used by the CI, but especially the build and test scripts can be run also locally out of the box:
-````console
-$ ./scripts/build.sh
-[... build output..]
-
-$ ./scripts/test.sh
-[... container start and test output...]
-````
 * `.devcontainer/` contains the definition of the DevContainer for **this** repository, i.e. the "devcontainer devcontainer".
 There should rarely be a need to modify this.
 * `.github/` contains the regular GitHub setup, with code owners and CI.
 * `resources/` contains a few screenshots.
+
+### Modify, Build, Test, Use
+
+It is very simple to develop the development container.
+You can change files related to the container and then simply run the `scripts/*`.
+They are used by the CI, but especially the build and test scripts can be run also locally out of the box:
+````console
+$ ./scripts/build.sh
+[... build output..]
+{"outcome":"success","imageName":["vsc-s-core-devcontainer-209943ec6ff795f57b20cdf85a70c904d1e3b4a329d1e01c79f0ffea615c6e40-features"]}
+
+$ ./scripts/test.sh
+[... test output...]
+💯  All passed!
+````
+You can now also use this development container locally on your machine, e.g. to test the container as part of an Eclipse S-CORE module.
+For this you must understand that you have the following situation:
+```
++---------------------------------+
+|   Development Container A       |
+|  +---------------------------+  |
+|  | S-CORE DevContainer image |  |
+|  +---------------------------+  |
++---------------------------------+
+```
+"Development Container A" is the one you are running right now to develop the "S-CORE DevContainer".
+So in order to execute "S-CORE DevContainer" on your host (and test it as part of an S-CORE module), you need to
+
+* export this newly built S-CORE DevContainer image
+* import the image on your host machine
+* use the image name in the `.devcontainer/devcontainer.json` of the targeted S-CORE module
+
+Concretely, this can be done as follows:
+
+* Run `docker save <imageName> > export.img` in "Development Container A".
+For example, given above build output, this would be `docker save vsc-s-core-devcontainer-209943ec6ff795f57b20cdf85a70c904d1e3b4a329d1e01c79f0ffea615c6e40-features > export.img`
+* On your **host machine** (!!), open a console and run `docker load < /path/to/export.img`.
+* In the working copy of the targeted S-CORE module, edit the file `.devcontainer/devcontainer.json` and change the `"image": "..."` entry to `"image": "<imageName>"`.
+Given above build output, this would be `"image": "vsc-s-core-devcontainer-209943ec6ff795f57b20cdf85a70c904d1e3b4a329d1e01c79f0ffea615c6e40-features"`.
+The Visual Studio Code instance related to the targeted S-CORE module will now ask you to rebuild the DevContainer.
+Do so, and you have a running instance of "S-CORE DevContainer" related to the targeted S-CORE module.
