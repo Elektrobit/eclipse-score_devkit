@@ -1,4 +1,4 @@
-name: 'Check, Build, Test, Publish DevContainer'
+name: Verify DevContainer'
 on:
   pull_request:
   push:
