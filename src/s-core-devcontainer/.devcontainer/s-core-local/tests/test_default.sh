@@ -7,9 +7,9 @@ check "validate graphviz is working" bash -c "dot -V"
 check "validate curl is working" bash -c "curl --version"
 
 # Bazel and related tools
-check "validate bazel is working and has the correct version" bash -c "bazel version"
-check "validate bazel-compile-commands is working and has the correct version" bash -c "bazel-compile-commands --version"
-check "validate buildifier is working and has the correct version" bash -c "buildifier --version"
+check "validate bazel is working" bash -c "bazel version"
+check "validate bazel-compile-commands is working" bash -c "bazel-compile-commands --version"
+check "validate buildifier is working" bash -c "buildifier --version"
 
 # C++ tooling
 check "validate clang is working" bash -c "clang --version"
