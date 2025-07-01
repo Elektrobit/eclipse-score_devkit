@@ -43,6 +43,9 @@ Afterwards, Visual Studio Code should show this in the lower right corner of you
 
 Open a Terminal, and - for example - type `bazel build ...` to execute the default build of the repository.
 
+To enable the C++ [language server](https://microsoft.github.io/language-server-protocol/) (`clangd`) to support C++ navigation and auto-completion together with Visual Studio Code, run `bazel-compile-commands`.
+This will create a file called [`compile_commands.json`](https://clang.llvm.org/docs/JSONCompilationDatabase.html), which is the base for `clangd` to start indexing the source code.
+
 Congratulations, you are now a dev container enthusiast 😊.
 
 ## Development
