@@ -25,7 +25,15 @@ jobs:
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
+            # Check
             pre-commit run --show-diff-on-failure --color=always --all-files
-            echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            ./scripts/test.sh s-core-devcontainer
+
+            # Build
             ./scripts/build.sh s-core-devcontainer
+
+            # Test
+            ./scripts/test.sh s-core-devcontainer
+
+            # Publish
+            echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            ./scripts/publish.sh s-core-devcontainer
