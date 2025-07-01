@@ -28,6 +28,7 @@ It should contain the following:
 ````
 
 The `<version>` must be a [valid, published release](https://github.com/Elektrobit/eclipse-score_devkit/tags).
+The `initializeCommand` is required to ensure the default Bazel cache directory exists on your host system.
 
 To start using the container, click the **Reopen in Container** button when prompted by Visual Studio Code:
 
