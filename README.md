@@ -2,7 +2,7 @@
 This repository contains the common [development container](https://containers.dev) for [Eclipse S-CORE](https://github.com/eclipse-score).
 It contains all tools required to develop (modify, build, ...) Eclipse S-CORE.
 All tool version are well-defined, and all tools are pre-configured to work as expected for Eclipse S-CORE development.
-The container is pre-built in GitHub Actions as part of this repository, published, and ready for use.
+The container is [pre-built](https://containers.dev/guide/prebuild) in GitHub Actions as part of this repository, tested, published, and ready for use.
 
 Using the pre-built container in an Eclipse S-CORE repository is described in the [Usage](#usage) section.
 
@@ -21,7 +21,7 @@ It should contain the following:
 
 ````json
 {
-    "name": "eclipse-score_devkit",
+    "name": "eclipse-score",
     "image": "ghcr.io/elektrobit/eclipse-score_devkit:<version>",
     "initializeCommand": "mkdir -p ${localEnv:HOME}/.cache/bazel"
 }
@@ -47,14 +47,34 @@ Congratulations, you are now a dev container enthusiast 😊.
 
 ## Development
 
-> **NOTE:** This is about the development of the DevContainer, not about development of Eclipse S-CORE using the DevContainer.
+> **NOTE:** This is about the development *of the DevContainer*, not about development of Eclipse S-CORE *using* the DevContainer.
 
-TODO: Write
+The [Eclipse S-CORE](https://github.com/eclipse-score) development container is developed using - a development container!
+That means, the usage is similarly simple:
 
-## FAQ
+````
+git clone https://github.com/eclipse-score/devcontainer.git
+cd devcontainer
+code .
+````
+and "Reopen in Container".
 
-How to upgrade the lockfile?
+### Repository Structure
+Ordered by importance:
 
-devcontainer upgrade --workspace-folder src/s-core-devcontainer/
+* `src/s-core-devcontainer/` contains the sources for the Eclipse S-CORE DevContainer.
+It uses pre-existing [DevContainer features](https://containers.dev/implementors/features/) to provide some standard tools like Git, Rust, and LLVM.
+In addition, it uses a so-called "local" feature (cf. `src/s-core-devcontainer/.devcontainer/s-core-local`) for the remaining tools and configuration.
+* `scripts/` contains scripts to build, test and publish the container.
+They are used by the CI, but especially the build and test scripts can be run also locally out of the box:
+````console
+$ ./scripts/build.sh
+[... build output..]
 
-TODO: Write more
+$ ./scripts/test.sh
+[... container start and test output...]
+````
+* `.devcontainer/` contains the definition of the DevContainer for **this** repository, i.e. the "devcontainer devcontainer".
+There should rarely be a need to modify this.
+* `.github/` contains the regular GitHub setup, with code owners and CI.
+* `resources/` contains a few screenshots.
