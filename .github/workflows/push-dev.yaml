@@ -1,4 +1,4 @@
-name: Verify DevContainer'
+name: Verify DevContainer
 on:
   pull_request:
   push:
