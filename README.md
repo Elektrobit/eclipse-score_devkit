@@ -12,8 +12,8 @@ Modifying the content of the container is explained in the [Development](#develo
 
 > **NOTE:** There are several development environments which support development containers; most notably [Visual Studio Code](https://code.visualstudio.com), but also [IntelliJ IDEA](https://www.jetbrains.com/idea) and others.
 > See [here](https://containers.dev/supporting) for a more complete list.
-> In the following, we assume that [Visual Studio Code](https://code.visualstudio.com) and its [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) is used.
-The Dev Containers extension homepage as a description how to get up to speed on Windows, macOS and Linux operating systems.
+> In the following, we assume that [Visual Studio Code](https://code.visualstudio.com) and its Dev Containers extension is used.
+The [Dev Containers extension homepage](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) has a description how to get up to speed on Windows, macOS and Linux operating systems.
 From here on, we assume that such a development container setup is installed and running.
 
 Add a file called `.devcontainer/devcontainer.json` to your repository.
@@ -27,7 +27,7 @@ It should contain the following:
 }
 ````
 
-The `<version>` must be a [valid, published release](../tags).
+The `<version>` must be a [valid, published release](https://github.com/Elektrobit/eclipse-score_devkit/tags).
 
 To start using the container, click the **Reopen in Container** button when prompted by Visual Studio Code:
 
