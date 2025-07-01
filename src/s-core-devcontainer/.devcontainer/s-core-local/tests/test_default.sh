@@ -5,6 +5,7 @@ set -euo pipefail
 check "validate git is working" bash -c "git --version"
 check "validate graphviz is working" bash -c "dot -V"
 check "validate curl is working" bash -c "curl --version"
+check "validate protoc is working" bash -c "protoc --version"
 
 # Bazel and related tools
 check "validate bazel is working" bash -c "bazel version"
