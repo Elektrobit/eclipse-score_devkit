@@ -45,18 +45,42 @@
                 "swyddfa.esbonio" // for Sphinx documentation support
             ],
             "settings": {
-				"files.insertFinalNewline": true,
+                "files.insertFinalNewline": true,
                 "editor.formatOnSave": false,
-				"[cpp]": {
-					"editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
-				},
+                "[cpp]": {
+                    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+                },
                 "clangd.path": "/usr/bin/clangd",
                 "clangd.arguments": [
-					"--compile-commands-dir=${workspaceFolder}/",
-					"--pretty",
-					"--background-index"
-				],
-				"C_Cpp.intelliSenseEngine": "disabled"
+                    "--compile-commands-dir=${workspaceFolder}/",
+                    "--pretty",
+                    "--background-index"
+                ],
+                "C_Cpp.intelliSenseEngine": "disabled",
+                "tasks": {
+                    "version": "2.0.0",
+                    "tasks": [
+                        {
+                            "label": "Run bazel-compile-commands",
+                            "command": "bazel-compile-commands",
+                            "type": "shell",
+                            "isBackground": true,
+                            "hide": true
+                        },
+                        {
+                            "label": "Update compile_commands.json",
+                            "command": "${command:clangd.restart}",
+                            "isBackground": true,
+                            "dependsOn": [
+                                "Run bazel-compile-commands"
+                            ],
+                            "group": {
+                                "kind": "build",
+                                "isDefault": true
+                            }
+                        }
+                    ]
+                }
             }
         }
     }
