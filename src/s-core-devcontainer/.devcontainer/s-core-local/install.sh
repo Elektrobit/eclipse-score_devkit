@@ -42,6 +42,9 @@ apt-get install -y \
 # GraphViz
 apt-get install -y graphviz
 
+# Protobuf compiler, via APT (needed by FEO)
+apt-get install -y protobuf-compiler
+
 # Draw.IO, directly from GitHub (apparently no APT repository available)
 # The version is pinned to a specific release, and the SHA256 checksum is provided by the devcontainer-features.json file.
 curl -L https://github.com/jgraph/drawio-desktop/releases/download/v${DRAWIO_VERSION}/drawio-amd64-${DRAWIO_VERSION}.deb -o /tmp/drawio.deb
