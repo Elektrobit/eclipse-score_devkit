@@ -21,7 +21,7 @@ It should contain the following:
 
 ````json
 {
-    "name": "eclipse-score",
+    "name": "eclipse-s-core",
     "image": "ghcr.io/elektrobit/eclipse-score_devkit:<version>",
     "initializeCommand": "mkdir -p ${localEnv:HOME}/.cache/bazel"
 }
