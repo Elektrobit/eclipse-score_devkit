@@ -58,8 +58,7 @@ That means, the usage is similarly simple:
 
 ````
 git clone https://github.com/eclipse-score/devcontainer.git
-cd devcontainer
-code .
+code devcontainer
 ````
 and "Reopen in Container".
 
