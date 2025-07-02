@@ -98,8 +98,8 @@ For this you must understand that you have the following situation:
 |  +---------------------------+  |
 +---------------------------------+
 ```
-"Development Container A" is the one you are running right now to develop the "S-CORE DevContainer".
-So in order to execute "S-CORE DevContainer" on your host (and test it as part of an S-CORE module), you need to
+`Development Container A` is the one you are running right now to develop the `S-CORE DevContainer` .
+So in order to execute `S-CORE DevContainer`  on your host (and test it as part of an S-CORE module), you need to
 
 * export this newly built S-CORE DevContainer image
 * import the image on your host machine
@@ -107,10 +107,10 @@ So in order to execute "S-CORE DevContainer" on your host (and test it as part o
 
 Concretely, this can be done as follows:
 
-* Run `docker save <imageName> > export.img` in "Development Container A".
+* Run `docker save <imageName> > export.img` in `Development Container A`.
 For example, given above build output, this would be `docker save vsc-s-core-devcontainer-209943ec6ff795f57b20cdf85a70c904d1e3b4a329d1e01c79f0ffea615c6e40-features > export.img`
 * On your **host machine** (!!), open a console and run `docker load < /path/to/export.img`.
 * In the working copy of the targeted S-CORE module, edit the file `.devcontainer/devcontainer.json` and change the `"image": "..."` entry to `"image": "<imageName>"`.
 Given above build output, this would be `"image": "vsc-s-core-devcontainer-209943ec6ff795f57b20cdf85a70c904d1e3b4a329d1e01c79f0ffea615c6e40-features"`.
 The Visual Studio Code instance related to the targeted S-CORE module will now ask you to rebuild the DevContainer.
-Do so, and you have a running instance of "S-CORE DevContainer" related to the targeted S-CORE module.
+Do so, and you have a running instance of `S-CORE DevContainer`  related to the targeted S-CORE module.
