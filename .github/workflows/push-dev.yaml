@@ -1,13 +1,9 @@
-name: Verify DevContainer
+name: 'Verify DevContainer'
 on:
   pull_request:
   push:
     branches:
       - main
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
