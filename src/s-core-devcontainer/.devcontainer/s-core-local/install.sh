@@ -11,6 +11,14 @@ cp -R "${SCRIPT_DIR}" "${COPY_TARGET}"
 rm -f "${COPY_TARGET}/devcontainer-features.env" "${COPY_TARGET}/devcontainer-features-install.sh"
 
 # Check if required variables are set
+if [ -z "${DRAWIO_VERSION:-}" ]; then
+    echo "Error: DRAWIO_VERSION is not set."
+    exit 1
+fi
+if [ -z "${DRAWIO_SHA256:-}" ]; then
+    echo "Error: DRAWIO_SHA256 is not set."
+    exit 1
+fi
 if [ -z "${BAZEL_VERSION:-}" ]; then
     echo "Error: BAZEL_VERSION is not set."
     exit 1
