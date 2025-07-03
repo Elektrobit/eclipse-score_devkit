@@ -91,6 +91,15 @@ echo "${BAZEL_COMPILE_COMMANDS_DEB_SHA256} /tmp/bazel-compile-commands.deb" | sh
 apt-get install -y --no-install-recommends --fix-broken /tmp/bazel-compile-commands.deb
 rm /tmp/bazel-compile-commands.deb
 
+# Code completion for Rust code of Bazel projects (language server part)
+# (see https://bazelbuild.github.io/rules_rust/rust_analyzer.html and https://rust-analyzer.github.io/book/rust_analyzer_binary.html)
+# The version is pinned to a specific release, and the SHA256 checksum is provided by the devcontainer-features.json file.
+curl -L https://github.com/rust-lang/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-x86_64-unknown-linux-gnu.gz > /tmp/rust-analyzer.gz
+echo "${RUST_ANALYZER_SHA256} /tmp/rust-analyzer.gz" | sha256sum -c - || exit -1
+gunzip -d /tmp/rust-analyzer.gz
+mv /tmp/rust-analyzer /usr/local/bin/rust-analyzer
+chmod +x /usr/local/bin/rust-analyzer
+
 # Cleanup
 apt-get autoremove -y
 apt-get clean
