@@ -1,4 +1,5 @@
 name: 'Release DevContainer'
+description: 'This workflow is creating releases of the devcontainer upon creation of a new tag.'
 on:
   push:
     tags:

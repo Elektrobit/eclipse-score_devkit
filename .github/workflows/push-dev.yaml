@@ -1,4 +1,5 @@
 name: 'Verify DevContainer'
+description: 'This workflow is checking that updates to the devcontainer do not break obvious stuff. It does static analysis, building, testing.'
 on:
   pull_request:
   push:
@@ -36,5 +37,6 @@ jobs:
             ./scripts/test.sh
 
             # Publish a snapshot
+            ## TODO: Remove this step before the first release
             echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             ./scripts/publish.sh snapshot
