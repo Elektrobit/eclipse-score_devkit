@@ -12,14 +12,10 @@ check "validate bazel-compile-commands is working" bash -c "bazel-compile-comman
 check "validate buildifier is working" bash -c "buildifier --version"
 
 # C++ tooling
-check "validate clang is working" bash -c "clang --version"
 check "validate clangd is working" bash -c "clangd --version"
 check "validate clang-format is working" bash -c "clang-format --version"
 check "validate clang-tidy is working" bash -c "clang-tidy --version"
-
-# Rust tooling
-check "validate cargo is working" bash -c "cargo --version"
-check "validate rustc is working" bash -c "rustc --version"
+check "validate clang is working" bash -c "clang --version"
 
 # Other build-related tools
 check "validate protoc is working" bash -c "protoc --version"

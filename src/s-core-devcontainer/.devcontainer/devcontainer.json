@@ -3,7 +3,6 @@
     "features": {
         "ghcr.io/devcontainers/features/git:1": {},
         "ghcr.io/devcontainers/features/git-lfs:1": {},
-        "ghcr.io/devcontainers/features/rust:1.4.0": {},
         "ghcr.io/devcontainers-community/features/llvm": {
             "version": "20"
         },
@@ -50,7 +49,7 @@
                 "[cpp]": {
                     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
                 },
-                "clangd.path": "/usr/bin/clangd",
+                //"clangd.path": "/usr/bin/clangd",
                 "clangd.arguments": [
                     "--compile-commands-dir=${workspaceFolder}/",
                     "--pretty",
