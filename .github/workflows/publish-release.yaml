@@ -21,7 +21,7 @@ jobs:
       - name: Check, Build, Test, Publish
         uses: devcontainers/ci@v0.3
         with:
-          imageName: ghcr.io/elektrobit/eclipse-score_devkit:latest
+          imageName: ghcr.io/elektrobit/eclipse-score_devkit
           runCmd: |
             # Check
             pre-commit run --show-diff-on-failure --color=always --all-files || exit -1
