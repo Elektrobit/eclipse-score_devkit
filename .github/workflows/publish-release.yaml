@@ -20,6 +20,7 @@ jobs:
 
       - name: Check, Build, Test, Publish
         uses: devcontainers/ci@v0.3
+        imageName: ghcr.io/elektrobit/eclipse-score_devkit:latest
         with:
           runCmd: |
             # Check
@@ -34,4 +35,3 @@ jobs:
             # Publish the release
             echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             ./scripts/publish.sh ${{ github.ref_name }}
-            ./scripts/publish.sh latest
