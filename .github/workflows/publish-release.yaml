@@ -1,0 +1,36 @@
+name: 'Release DevContainer'
+description: 'This workflow is creating releases of the devcontainer upon creation of a new tag.'
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  build:
+    name: 'Check, Build, Test, Publish Release'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout (GitHub)
+        uses: actions/checkout@v3
+
+      - name: Check, Build, Test, Publish
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            # Check
+            pre-commit run --show-diff-on-failure --color=always --all-files || exit -1
+
+            # Build
+            ./scripts/build.sh
+
+            # Test
+            ./scripts/test.sh
+
+            # Publish the release
+            echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            ./scripts/publish.sh ${{ github.ref_name }}
