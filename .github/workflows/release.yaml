@@ -1,5 +1,5 @@
 name: 'Validate & Publish DevContainer'
-description: 'This workflow is checking that updates do not break stuff and publishes the container.'
+description: 'This workflow is checking that updates do not break stuff and publishes the released container.'
 on:
   push:
     tags:
@@ -30,7 +30,7 @@ jobs:
         with:
           imageName: ghcr.io/elektrobit/eclipse-score_devkit
           cacheFrom: ghcr.io/elektrobit/eclipse-score_devkit
-          imageTag: ${{ github.ref_name }},latest
+          imageTag: ${{ github.ref_name }}
           runCmd: |
             # Check
             pre-commit run --show-diff-on-failure --color=always --all-files || exit -1
