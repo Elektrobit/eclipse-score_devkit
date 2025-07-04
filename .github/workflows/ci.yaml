@@ -1,13 +1,20 @@
-name: 'Release DevContainer'
-description: 'This workflow is creating releases of the devcontainer upon creation of a new tag.'
+name: 'Validate & Publish DevContainer'
+description: 'This workflow is checking that updates do not break obvious stuff. In case of tag builds, it also publishes the container.'
 on:
+  pull_request:
   push:
+    branches:
+      - main
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
-    name: 'Check, Build, Test, Publish Release'
+    name: 'Check, Build, Test, Publish DevContainer'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -30,7 +37,8 @@ jobs:
         with:
           imageName: ghcr.io/elektrobit/eclipse-score_devkit
           cacheFrom: ghcr.io/elektrobit/eclipse-score_devkit
-          push: always
+          imageTag: ${{ github.ref_name }},latest
+          refFilterForPush: 'refs/tags/[0-9]+.[0-9]+.[0-9]+'
           runCmd: |
             # Check
             pre-commit run --show-diff-on-failure --color=always --all-files || exit -1
